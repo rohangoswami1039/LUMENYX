@@ -1,0 +1,55 @@
+/* ==========================================================================
+   LaserFlow Background Styles
+   ========================================================================== */
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-background, -1);
+    pointer-events: none;
+    overflow: hidden;
+
+    /* GPU acceleration hints */
+    transform: translateZ(0);
+    will-change: transform;
+
+    /* Subtle radial gradient overlay for depth */
+    background: radial-gradient(ellipse at 50% 50%,
+            transparent 0%,
+            rgba(5, 5, 16, 0.3) 100%);
+}
+
+.canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    /* Ensure smooth rendering */
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Add subtle vignette effect */
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+            transparent 40%,
+            rgba(5, 5, 16, 0.6) 100%);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        opacity: 0.3;
+    }
+}

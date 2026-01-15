@@ -1,0 +1,70 @@
+// CSS Modules declaration
+declare module '*.module.css' {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+
+// Global CSS declaration
+declare module '*.css' {
+    const content: string;
+    export default content;
+}
+
+// Image assets
+declare module '*.png' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.jpg' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.jpeg' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.gif' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.webp' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.svg' {
+    const src: string;
+    export default src;
+}
+
+// Font assets
+declare module '*.woff' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.woff2' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.ttf' {
+    const src: string;
+    export default src;
+}
+
+declare module '*.otf' {
+    const src: string;
+    export default src;
+}
+
+// Global type utilities
+type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+
+type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
