@@ -1,36 +1,42 @@
-/**
- * MainLayout Component
- * 
- * Primary layout wrapper that positions content above the LaserFlow background
- * with proper z-indexing and responsive container styling.
- */
-
 import React from 'react';
-import styles from './MainLayout.module.css';
-import LaserFlow from '../Background/LaserFlow';
+import Header from './Header';
+import LaserFlow from '../LaserFlow';
 
 interface MainLayoutProps {
-    /** Child content to render within the layout */
     children: React.ReactNode;
-    /** Optional additional CSS class */
     className?: string;
-    /** Whether to show the animated background */
-    showBackground?: boolean;
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({
     children,
     className,
-    showBackground = true,
 }) => {
     return (
-        <div className={`${styles.layout} ${className || ''}`}>
-            {/* Animated Background Layer */}
-            {showBackground && <LaserFlow />}
+        <div className={`relative min-h-screen text-white overflow-x-hidden ${className || ''}`}>
+            {/* Background Layer */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <LaserFlow
+                    verticalBeamWidth={3.5}
+                    horizontalBeamOffset={0}
+                    verticalBeamOffset={-0.49}
+                    horizontalSizing={2.95}
+                    verticalSizing={8}
+                    fogScale={0.15}
+                    flowStrength={0.7}
+                    flowSpeed={0.2}
+                    fogIntensity={0.30}
+                    wispSpeed={100}
+                    wispDensity={1.5}
+                    color="#FF79C6"
+                />
+            </div>
 
             {/* Content Layer */}
-            <div className={styles.content}>
-                <main className={styles.main}>{children}</main>
+            <div className="relative z-10 flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1">
+                    {children}
+                </main>
             </div>
         </div>
     );
