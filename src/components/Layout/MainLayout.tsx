@@ -27,7 +27,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
                     fogIntensity={0.30}
                     wispSpeed={100}
                     wispDensity={1.5}
-                    color="#FF79C6"
+                    color="#976CC4"
                 />
             </div>
 
